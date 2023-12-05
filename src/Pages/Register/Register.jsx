@@ -12,7 +12,7 @@ import { useGlobalContext } from '../context/Store';
 const Register = () => {
 
     const{FCMToken}=useGlobalContext()
-    console.log(FCMToken,"THIS IS MY GLOBAL FIREBASE TOKEN")
+    console.log(FCMToken,"THIS IS MY GLOBAL FIREBASE TOKEN ON REGISTER FILE")
     const [isLoading, setLoading] = useState(false)
     const navigate=useNavigate()
     return (

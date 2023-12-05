@@ -1,4 +1,5 @@
-export const UserProfile=async()=>{
+export const UserProfile=async(fcmToken)=>{
+
 
     const userdetails= localStorage.getItem('userdetails')
     const token=localStorage.getItem('token')
@@ -13,7 +14,7 @@ export const UserProfile=async()=>{
             },
             body: JSON.stringify({
                 userdetails:userdetails,
-                
+                fcmToken:fcmToken
             })
         })
 

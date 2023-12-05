@@ -18,28 +18,22 @@ initializeApp(firebaseConfig);
 const firebaseApp = initializeApp(firebaseConfig);
 const messaging = getMessaging(firebaseApp);
 
-export const getFMCToken = (setTokenFound) => {
+export const getFMCToken = async(setTokenFound) => {
   
 
-  return getToken(messaging, {vapidKey: process.env.REACT_APP_VAPID_KEY}).then((currentToken) => {
-    if (currentToken) {
-      // console.log('current token for client: ', currentToken);
-      
-      setTokenFound(currentToken)
-    } else {
-      console.log('No registration token available. Request permission to generate one.');
-      setTokenFound(null)
-     
-    }
-  }).catch((err) => {
-    console.log('An error occurred while retrieving token. ', err);
-   
-  });
+  try{
+
+    const token=await getToken(messaging, {vapidKey: process.env.REACT_APP_VAPID_KEY})
+    return token;
+  }
+  catch(err){
+    console.log(err,"this error is genrated while token genration")
+  }
 }
 
 export const onMessageListener = () =>
   new Promise((resolve) => {
     onMessage(messaging, (payload) => {
       resolve(payload);
-    });
+    })
 });

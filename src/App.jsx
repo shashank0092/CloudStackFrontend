@@ -32,7 +32,9 @@ const App = () => {
 
         if (permission === 'granted') {
 
-          getFMCToken(setFCMToken)
+          const token=await getFMCToken();
+          setFCMToken(token)
+          console.log("this is token in app",token)
         } else if (permission === 'denied') {
           alert('You Denied Message Permission');
         }
